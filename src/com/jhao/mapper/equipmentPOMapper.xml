@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jhao.mapper.EquipmentPOMapper">
+
+    <!-- 用户操作 -->
+     <!-- 查询某用户租借的器材 -->
+    <select id="listByRent" parameterType="String" 
+        resultType="com.jhao.po.EquipmentPO">
+        select * from rent where usernamed=#{usernamed}
+    </select>
+      
+   <!-- 查询单个器材-->
+    <select id="listOne" parameterType="int"
+    	resultType="com.jhao.po.EquipmentPO">
+        select * from equipment where oid=#{oid}
+    </select>
+    
+    <!-- 查询全部器材-->
+    <select id="list" resultType="com.jhao.po.EquipmentPO" >
+        select * from equipment
+    </select>
+      
+     <!-- 租借器材，更新器材表amount数量 -->
+	<update id="rentUpdate"   >
+		update equipment set eqAmount=#{0} where oid=#{1}
+		
+	</update> 
+    
+    <!-- 这个应该要放到别的mapper解耦 -->
+   	<insert id="newRent" parameterType="com.jhao.po.RentTablePO">
+   		insert into rent(usernamed,eqName,rentAmount,price,allPrice) 
+   		values(#{0},#{1},#{2},#{3},#{4})
+   	</insert>
+    
+    <!-- 管理员操作-->
+    <!-- 新增器材 -->
+    <insert id="createEq">
+        insert into equipment(eqName,eqAmount,price)
+        values(#{0},#{1},#{2})
+    </insert>
+
+    <!-- 删除器材 -->
+    <delete id="deleteEq" parameterType="int">
+        delete from equipment
+        where oid=#{oid}
+    </delete>
+
+    <!-- 查询器材 这个是检查器材表是否有同名器材 -->
+    <select id="checkEq" parameterType="String"
+            resultType="com.jhao.po.EquipmentPO">
+        select * from equipment
+        where eqName=#{eqName}
+    </select>
+
+    <!-- 显示损坏表 -->
+    <select id="listDamage" resultType="com.jhao.po.DamageTablePO">
+        SELECT * FROM  damageEq
+    </select>
+    
+    <!-- 显示维护表 -->
+    <select id="listMaintain" resultType="com.jhao.po.MaintainTablePO">
+        SELECT * FROM  maintain
+    </select>
+    <!-- 显示丢失表 -->
+    <select id="listLost" resultType="com.jhao.po.LostTablePO">
+        SELECT * FROM  loseeq
+    </select>
+    <!-- 显示租借表 包含所有人的 -->
+    <select id="listRent" resultType="com.jhao.po.RentTablePO">
+        SELECT  * FROM  rent
+    </select>
+
+    <!-- 新增损坏器材申报 -->
+    <insert id="insertDamage">
+        INSERT INTO damageEq(oid,eqName,usernamed,remarks,date,amount)
+        VALUES(#{0},#{1},#{2},#{3},#{4},#{5})
+    </insert>
+
+    <!-- 通过name查询oid -->
+    <select id="checkOidByName" parameterType="String"
+            resultType="int">
+        SELECT oid FROM equipment
+        WHERE eqName=#{eqName}
+    </select>
+
+    <!-- 新增器材维护信息 -->
+    <insert id="insertMaintain">
+        INSERT INTO maintain(oid,eqName,startDate,eqAmount)
+        VALUES(#{0},#{1},#{2},#{3})
+    </insert>
+
+    <!-- 新增丢失器材信息 -->
+    <insert id="insertLost">
+        INSERT INTO loseeq(oid,eqName,date,amount,usernamed,remarks)
+        VALUES(#{0},#{1},#{2},#{3},#{4},#{5})
+    </insert>
+
+    <!-- 移除表新增记录 -->
+    <insert id="insertDelete">
+        insert into deleted(oid,eqName,date)
+         values (#{0},#{1},#{2});
+    </insert>
+
+    <!-- 通过oid获取name -->
+    <select id="getNameByOid" parameterType="int"
+        resultType="String">
+        SELECT eqName FROM equipment
+        WHERE oid=#{oid}
+    </select>
+
+    <!-- 更新器材信息 -->
+    <update id="updateEq">
+        update equipment SET eqAmount=#{0},eqName=#{1},price=#{2}
+        WHERE oid=#{3}
+
+    </update>
+
+    <!-- 更新器材租借信息 -->
+    <update id="updateRent">
+        update rent SET rentAmount=#{0},eqName=#{1},price=#{2},allPrice=#{3}
+        WHERE oid=#{4}
+
+    </update>
+</mapper>
