@@ -48,4 +48,6 @@ public interface EquipmentPOMapper {
 		public int updateEq(int eqAmount,String eqName,double price,int oid);
 
 		public int updateRent(int eqAmount,String eqName,double price,double allPrice,int oid);
+
+		public int findOidInRent(String eqName,String usernamed,Date date);
 }

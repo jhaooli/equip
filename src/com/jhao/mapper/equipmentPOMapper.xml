@@ -122,4 +122,10 @@
         WHERE oid=#{4}
 
     </update>
+
+    <!-- 查找rent表的oid *-->
+    <select id="findOidInRent" resultType="int">
+        SELECT oid FROM rent
+        WHERE eqName=#{0} AND usernamed=#{1} AND startDate=#{2}
+    </select>
 </mapper>

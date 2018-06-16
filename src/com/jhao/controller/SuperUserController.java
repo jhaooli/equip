@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.List;
 
@@ -141,14 +142,25 @@ public class SuperUserController {
 		return toUpdateEq(request,response);
 	}
 
-	private void updateRentMessage(HttpServletRequest request) {
+	private void updateRentMessage(HttpServletRequest request) throws Exception{
 		String name = request.getParameter("name");
+		String usernamed = request.getParameter("usernamed");
+		String startDate = request.getParameter("startDate");
+		System.out.println("startDate ="+startDate);
+		java.text.SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd");
+		System.out.println("运行到转换date之前");
+		java.util.Date date = (java.util.Date) formatter.parse(startDate.toString());
+		System.out.println("date="+date+"--"+date.getTime());
+		Date d = new Date(date.getTime());
+		System.out.println("d="+d+"--"+d.getTime());
+		System.out.println("运行到转换date之后");
+		System.out.println("date = "+d);
 		String strrentAmount = request.getParameter("rentAmount");
 		int rentAmount  =  Integer.parseInt(strrentAmount);
 		String strPrice = request.getParameter("price");
 		Double price = Double.parseDouble(strPrice);
 		Double allprice = price*rentAmount;
-		int oid = getOidByName(name);
+		int oid = equipmentService.findOidInRent(name,usernamed,d);
 		System.out.println("name="+name+" amount="+rentAmount+" price="+price+" oid="+oid+" allprice = "+allprice);
 		if(rentAmount!=0){
 			equipmentService.updateRent(rentAmount,name,price,allprice,oid);

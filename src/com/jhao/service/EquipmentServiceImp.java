@@ -127,5 +127,10 @@ public class EquipmentServiceImp implements EquipmentService{
 		return equipmentPOMapper.updateRent(eqAmount,eqName,price,allPrice,oid);
 	}
 
+	@Override
+	public int findOidInRent(String eqName, String usernamed, Date date) {
+		return equipmentPOMapper.findOidInRent(eqName,usernamed,date);
+	}
+
 
 }
