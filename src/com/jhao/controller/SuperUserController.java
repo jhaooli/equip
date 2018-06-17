@@ -167,6 +167,69 @@ public class SuperUserController {
 		}
 	}
 
+	@RequestMapping("/UpdateDamage")
+	public ModelAndView updateDamage(HttpServletRequest request, HttpServletResponse response) throws Exception{
+
+		updateDamageMessage(request);
+
+		return toUpdateEq(request,response);
+	}
+
+	private void updateDamageMessage(HttpServletRequest request) throws Exception{
+		String name = request.getParameter("name");
+		String usernamed = request.getParameter("usernamed");
+		String remarks = request.getParameter("remarks");
+		String date = request.getParameter("date");
+		System.out.println("date ="+date);
+		java.text.SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd");
+		System.out.println("运行到转换date之前");
+		java.util.Date date1 = (java.util.Date) formatter.parse(date.toString());
+		System.out.println("date="+date1+"--"+date1.getTime());
+		Date d = new Date(date1.getTime());
+		System.out.println("d="+d+"--"+d.getTime());
+		System.out.println("运行到转换date之后");
+		System.out.println("date = "+d);
+		String strrentAmount = request.getParameter("amount");
+		int amount  =  Integer.parseInt(strrentAmount);
+		int oid = getOidByName(name);
+		if(amount>0&&oid!=-1){
+			equipmentService.updateDamage(name,usernamed,amount,remarks,oid);
+			System.out.println("完成equipmentService.updateDamage(name,usernamed,amount,remarks,oid);");
+		}
+
+	}
+
+	@RequestMapping("/UpdateLost")
+	public ModelAndView updateLost(HttpServletRequest request, HttpServletResponse response) throws Exception{
+
+		updateLostMessage(request);
+
+		return toUpdateEq(request,response);
+	}
+
+	private void updateLostMessage(HttpServletRequest request) throws Exception{
+		String name = request.getParameter("name");
+		String usernamed = request.getParameter("usernamed");
+		String remarks = request.getParameter("remarks");
+		String date = request.getParameter("date");
+		System.out.println("date ="+date);
+		java.text.SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd");
+		System.out.println("运行到转换date之前");
+		java.util.Date date1 = (java.util.Date) formatter.parse(date.toString());
+		System.out.println("date="+date1+"--"+date1.getTime());
+		Date d = new Date(date1.getTime());
+		System.out.println("d="+d+"--"+d.getTime());
+		System.out.println("运行到转换date之后");
+		System.out.println("date = "+d);
+		String strrentAmount = request.getParameter("amount");
+		int amount  =  Integer.parseInt(strrentAmount);
+		int oid = getOidByName(name);
+		if(amount>0&&oid!=-1){
+			equipmentService.updateLost(name,usernamed,amount,remarks,oid);
+			System.out.println("完成updateLostMessage(HttpServletRequest request) throws Exception");
+		}
+	}
+
 	@RequestMapping("/toExaminationEq")
 	public ModelAndView toExaminationEq(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ModelAndView mav = new ModelAndView();
@@ -340,7 +403,7 @@ public class SuperUserController {
 		//似乎需要由名字查询oid
 		//先做一次查询
 		int oid = getOidByName(eqName);
-		String strAmount = request.getParameter("eqAmount");
+		String strAmount = request.getParameter("amount");
 		int eqAmount  =  Integer.parseInt(strAmount);
 		java.util.Date date = new java.util.Date();
 		System.out.println("oid = "+oid+" eqname = "+eqName+" eqAmount = "+strAmount+

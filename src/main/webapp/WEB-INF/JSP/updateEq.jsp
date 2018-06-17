@@ -41,6 +41,7 @@
         <td>租借人</td>
         <td>租借日期</td>
         <td>归还日期</td>
+
         <td>更改</td>
     </tr>
     <!-- disabled="disabled"-->
@@ -51,8 +52,9 @@
             <td><input type="text"  name="rentAmount" value="${c.rentAmount}"/></td>
             <td><input type="text"  name="price" value="${c.price}"/></td>
             <td><input type="text"  name="usernamed" value="${c.usernamed}"/></td>
-            <td><input type="text"   name="startDate" value="${c.startDate}"/></td>
+            <td><input type="text"  name="startDate" value="${c.startDate}"/></td>
             <td><input type="text"  name="endDate" value="${c.endDate}"/></td>
+
             <td><button type="submit">更改 </button></td>
             </form>
         </tr>
@@ -94,15 +96,19 @@
         <td>器材数量</td>
         <td>申报人</td>
         <td>申报日期</td>
+        <td>备注</td>
         <td>更改</td>
     </tr>
     <c:forEach items="${listDamage}" var="c" varStatus="st">
         <tr>
-            <td>${c.eqName}</td>
-            <td>${c.amount}</td>
-            <td>${c.usernamed}</td>
-            <td>${c.date}</td>
-            <td><a href="">更改</a> </td>
+            <form action="${base}/toSuperUser/UpdateDamage" method="post">
+            <td><input type="text"  name="name" value="${c.eqName}"/></td>
+            <td><input type="text"  name="amount" value="${c.amount}"/></td>
+            <td><input type="text"  name="usernamed" value="${c.usernamed}"/></td>
+            <td><input type="text"  name="date" value="${c.date}"/></td>
+                <td><textarea rows="10" cols="30" name="remarks">${c.remarks}</textarea></td>
+                <td><button type="submit">更改 </button> </td>
+            </form>
         </tr>
     </c:forEach>
 </table>
@@ -117,15 +123,19 @@
         <td>器材数量</td>
         <td>申报人</td>
         <td>申报日期</td>
+        <td>备注</td>
         <td>更改</td>
     </tr>
     <c:forEach items="${listLost}" var="c" varStatus="st">
         <tr>
-            <td>${c.eqName}</td>
-            <td>${c.amount}</td>
-            <td>${c.usernamed}</td>
-            <td>${c.date}</td>
+            <form action="${base}/toSuperUser/UpdateLost" method="post">
+            <td><input type="text"  name="name" value="${c.eqName}"/></td>
+            <td><input type="text"  name="name" value="${c.amount}"/></td>
+            <td><input type="text"  name="name" value="${c.usernamed}"/></td>
+            <td><input type="text"  name="name" value="${c.date}"/></td>
+            <td><textarea rows="10" cols="30" name="remarks">${c.remarks}</textarea></td>
             <td><a href="">更改</a> </td>
+            </form>
         </tr>
     </c:forEach>
 </table>

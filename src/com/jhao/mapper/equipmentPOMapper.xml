@@ -128,4 +128,16 @@
         SELECT oid FROM rent
         WHERE eqName=#{0} AND usernamed=#{1} AND startDate=#{2}
     </select>
+
+    <!-- 更新器材损坏表信息 -->
+    <update id="updateDamage">
+        update damageeq SET eqName=#{0},usernamed=#{1},amount=#{2},remarks=#{3}
+        WHERE  oid=#{4}
+    </update>
+
+    <!-- 更新器材丢失表信息 -->
+    <update id="updateLost">
+        update loseeq SET eqName=#{0},usernamed=#{1},amount=#{2},remarks=#{3}
+        WHERE oid=#{4}
+    </update>
 </mapper>

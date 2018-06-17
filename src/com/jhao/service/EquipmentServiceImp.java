@@ -132,5 +132,15 @@ public class EquipmentServiceImp implements EquipmentService{
 		return equipmentPOMapper.findOidInRent(eqName,usernamed,date);
 	}
 
+	@Override
+	public int updateDamage(String eqName, String usernamed, int amount, String remarks, int oid) {
+		return equipmentPOMapper.updateDamage(eqName,usernamed,amount,remarks,oid);
+	}
+
+	@Override
+	public int updateLost(String eqName, String usernamed, int amount, String remarks, int oid) {
+		return equipmentPOMapper.updateLost(eqName,usernamed,amount,remarks,oid);
+	}
+
 
 }

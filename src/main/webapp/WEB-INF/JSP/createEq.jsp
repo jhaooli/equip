@@ -52,7 +52,7 @@
     <br>
     <br>
     <h3>添加器材维护信息</h3>
-    <form action="${base}/toSuperUser/CreateLostEq" method="post">
+    <form action="${base}/toSuperUser/CreateMaintainEq" method="post">
         <table>
             <tr>
                 <td>器材名称</td>

@@ -45,4 +45,8 @@ public interface EquipmentService {
 	public int updateRent(int eqAmount,String eqName,double price,double allPrice,int oid);
 
 	public int findOidInRent(String eqName,String usernamed,Date date);
+
+	public int updateDamage(String eqName,String usernamed,int amount,String remarks,int oid);
+
+	public int updateLost(String eqName,String usernamed,int amount,String remarks,int oid);
 }
