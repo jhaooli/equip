@@ -10,13 +10,13 @@ public interface EquipmentPOMapper {
 		//simple user的操作
 	    public List<EquipmentPO> list();
 	    
-	    public List<EquipmentPO> listByRent(String eqName);
+	    public List<RentTablePO> listByRent(String usernamed);
 	    
 	    public int  rentUpdate(int eqAmount, int oid);
 	     
 	    public EquipmentPO listOne(int oid);
 	    
-	    public int newRent(String usernamed, String eqName, int rentAmount, double price, double allPrice);
+	    public int newRent(String usernamed, String eqName, int rentAmount, double price, double allPrice,Date startDate);
 
 	    //super user的操作
 		public int createEq(String eqName,int eqAmount,double price);
@@ -54,4 +54,8 @@ public interface EquipmentPOMapper {
 		public int updateDamage(String eqName,String usernamed,int amount,String remarks,int oid);
 
 		public int updateLost(String eqName,String usernamed,int amount,String remarks,int oid);
+
+		public int returnEq(int oid);
+
+		public int updateMaintain(int eqAmount,String eqName,String usernamed,Date startDate);
 }

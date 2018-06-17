@@ -17,21 +17,21 @@
     <h1>器材归还</h1>
     <br>
     <br>
-    <table border='1' >
+    <table >
     <tr>
        
         <td>器材名称</td>
         <td>已租器材数量</td>
-        <td>器材租借价钱（单个）</td>
+        <td>器材租借价钱</td>
         <td>归还</td>
     </tr>
     <c:forEach items="${esr}" var="c" varStatus="st">
-        <tr>
-            <td>${c.eqName}</td>
-            <td>${c.rentAmount}</td>
-            <td>${c.price}</td>
-            <td><a>归还</a></td>
-        </tr>
+        <form action="${base}/toSimpleUser/returnEq" method="post">
+            <td><input type="text"  name="name" readonly="readonly" value="${c.eqName}"/></td>
+            <td><input type="text"  name="amount" readonly="readonly" value="${c.rentAmount}"/></td>
+            <td><input type="text"  name="price" readonly="readonly" value="${c.price}"/></td>
+            <td><input type="submit" value="归还"></td>
+        </form>
     </c:forEach>
 </table>
   </body>

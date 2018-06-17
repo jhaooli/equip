@@ -22,9 +22,9 @@ public class EquipmentServiceImp implements EquipmentService{
 	}
 
 	@Override
-	public List<EquipmentPO> listByRent(String eqName) {
+	public List<RentTablePO> listByRent(String usernamed) {
 		
-		return equipmentPOMapper.listByRent(eqName);
+		return equipmentPOMapper.listByRent(usernamed);
 	}
 
 	@Override
@@ -40,9 +40,9 @@ public class EquipmentServiceImp implements EquipmentService{
 	}
 
 	@Override
-	public int newRent(String usernamed, String eqName, int rentAmount, double price, double allPrice) {
+	public int newRent(String usernamed, String eqName, int rentAmount, double price, double allPrice,Date date) {
 		
-		return equipmentPOMapper.newRent(usernamed, eqName, rentAmount, price, allPrice);
+		return equipmentPOMapper.newRent(usernamed, eqName, rentAmount, price, allPrice,date);
 	}
 
 	@Override
@@ -140,6 +140,17 @@ public class EquipmentServiceImp implements EquipmentService{
 	@Override
 	public int updateLost(String eqName, String usernamed, int amount, String remarks, int oid) {
 		return equipmentPOMapper.updateLost(eqName,usernamed,amount,remarks,oid);
+	}
+
+
+	@Override
+	public int returnEq(int oid) {
+		return equipmentPOMapper.returnEq(oid);
+	}
+
+	@Override
+	public int updateMaintain(int eqAmount, String eqName, String usernamed, Date startDate) {
+		return equipmentPOMapper.updateMaintain(eqAmount,eqName,usernamed,startDate);
 	}
 
 

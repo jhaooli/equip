@@ -77,9 +77,9 @@
         <tr>
             <form action="${base}/toSuperUser/UpdateMaintain" method="post">
             <td><input type="text"  name="name" value="${c.eqName}"/></td>
-            <td><input type="text"  name="name" value="${c.eqAmount}"/></td>
-            <td><input type="text"  name="name" value="${c.startDate}"/></td>
-            <td><input type="text"  name="name" value="${c.endDate}"/></td>
+            <td><input type="text"  name="amount" value="${c.amount}"/></td>
+            <td><input type="text"  name="startDate" readonly="readonly" value="${c.startDate}"/></td>
+            <td><input type="text"  name="endDate" readonly="readonly" value="${c.endDate}"/></td>
             <td><button type="submit">更改 </button> </td>
             </form>
         </tr>

@@ -66,7 +66,7 @@
     <c:forEach items="${listMaintain}" var="c" varStatus="st">
         <tr>
             <td>${c.eqName}</td>
-            <td>${c.eqAmount}</td>
+            <td>${c.amount}</td>
             <td>${c.startDate}</td>
             <td>${c.endDate}</td>
         </tr>

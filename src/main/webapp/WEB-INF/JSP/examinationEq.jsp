@@ -16,7 +16,7 @@
     <h1>器材查询</h1>
     
   
-<table border='1' >
+<table  >
     <tr>
        
         <td>器材名称</td>
@@ -26,10 +26,13 @@
     </tr>
     <c:forEach items="${es}" var="c" varStatus="st">
         <tr>
-            <td>${c.eqName}</td>
-            <td>${c.eqAmount}</td>
-            <td>${c.price}</td>
-            <td><a href="${base}/toSimpleUser/rent?oid=${c.oid}">租借</a></td>
+
+            <form action="${base}/toSimpleUser/rent" method="post">
+            <td><input type="text"  name="name" value="${c.eqName}"/></td>
+            <td><input type="text"  name="amount" value="${c.eqAmount}"/></td>
+            <td><input type="text"  name="price" readonly="readonly" value="${c.price}"/></td>
+            <td><input type="submit" value="租借"></td>
+            </form>
         </tr>
     </c:forEach>
 </table>

@@ -134,6 +134,33 @@ public class SuperUserController {
 		System.out.println("完成updateEquip(HttpServletRequest request) ");
 	}
 
+
+	@RequestMapping("/UpdateMaintain")
+	public ModelAndView updateMaintain(HttpServletRequest request, HttpServletResponse response) throws Exception{
+
+		updateMaintainMessage(request);
+
+		return toUpdateEq(request,response);
+	}
+
+	private void updateMaintainMessage(HttpServletRequest request) throws Exception{
+		String name = request.getParameter("name");
+		String strAmount = request.getParameter("amount");
+		int amount = Integer.parseInt(strAmount);
+		String strDate = request.getParameter("startDate");
+		java.text.SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd");
+		System.out.println("运行到转换date之前");
+		java.util.Date date1 = (java.util.Date) formatter.parse(strDate.toString());
+		System.out.println("date="+date1+"--"+date1.getTime());
+		Date d = new Date(date1.getTime());
+		String usernamed = request.getParameter("usernamed");
+		if(amount>0){
+			equipmentService.updateMaintain(amount,name,usernamed,d);
+			System.out.println("完成updateMaintainMessage（）");
+		}
+	}
+
+
 	@RequestMapping("/UpdateRent")
 	public ModelAndView updateRent(HttpServletRequest request, HttpServletResponse response) throws Exception{
 

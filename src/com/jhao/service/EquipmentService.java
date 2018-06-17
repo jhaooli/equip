@@ -9,12 +9,12 @@ public interface EquipmentService {
 
 	//普通用户操作
 	public List<EquipmentPO> list();
-	public List<EquipmentPO> listByRent(String eqName);//已借器材
+	public List<RentTablePO> listByRent(String usernamed);//已借器材
 	 public int  rentUpdate(int eqAmount, int oid);//租借器材
 	 public EquipmentPO listOne(int oid);//根据id找单个器材记录
 
 	 //租借表生成一个新的记录
-	 public int newRent(String usernamed, String eqName, int rentAmount, double price, double allPrice);
+	 public int newRent(String usernamed, String eqName, int rentAmount, double price, double allPrice,Date date);
 	 //管理员操作
 	//新增器材
 	public int createEq(String eqName,int eqAmount,double price);
@@ -49,4 +49,8 @@ public interface EquipmentService {
 	public int updateDamage(String eqName,String usernamed,int amount,String remarks,int oid);
 
 	public int updateLost(String eqName,String usernamed,int amount,String remarks,int oid);
+
+	public int returnEq(int oid);
+
+	public int updateMaintain(int eqAmount,String eqName,String usernamed,Date startDate);
 }
