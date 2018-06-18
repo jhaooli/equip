@@ -281,6 +281,8 @@ public class SuperUserController {
 		return mav;
 	}
 
+
+
 	//移除器材
 	private void deleteEquipment(HttpServletRequest request) {
 		String strOid = request.getParameter("oid");
